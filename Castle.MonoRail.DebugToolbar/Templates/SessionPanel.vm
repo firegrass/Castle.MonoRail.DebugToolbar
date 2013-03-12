@@ -1,0 +1,45 @@
+#set($Session = $context.UnderlyingContext.Session)
+<h4>Session Variables</h4>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		#foreach($item in $Session)
+		#even
+			<tr class="pDebugEven">
+		#odd
+			<tr class="pDebugOdd">
+		#each
+				<td>${item}</td>
+				<td>${Session.get_item($item)}</td>
+			</tr>
+		#end
+	</tbody>
+</table>
+
+#set($Flash = $context.Flash)
+<h4>Flash</h4>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		#foreach($item in $Flash)
+		#even
+			<tr class="pDebugEven">
+		#odd
+			<tr class="pDebugOdd">
+		#each
+				<td>${item.Key}</td>
+				<td>${item.Value}</td>
+			</tr>
+		#end
+	</tbody>
+</table>

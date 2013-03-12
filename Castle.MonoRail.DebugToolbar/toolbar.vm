@@ -1,0 +1,56 @@
+<div id="pDebug" style="display:none;">
+	<script type="text/javascript">
+		var DEBUG_TOOLBAR_STATIC_PATH = '/MonoRail/Files/';
+	</script>
+
+	<script data-main="/MonoRail/Files/DebugToolbarJsFunctions" src="/MonoRail/Files/DebugToolbarJsRequire.rails"></script>
+
+	<div style="display: none;" id="pDebugToolbar">
+		<ol id="pDebugPanelList">
+			#if($debugtoolbar_panels)
+			<li>
+				<a id="pHideToolBarButton" href="#" title="Hide Toolbar">Hide &raquo;</a>
+			</li>
+			#else
+			<li id="pDebugButton">DEBUG</li>
+			#end
+
+			#foreach($panel in $debugtoolbar_panels)
+				<li id="panel_${panel.DomId}">
+					<a href="${panel.Url}" title="${panel.Title}" class="${panel.DomId}">
+						${panel.Title}
+						<br /><small>${panel.Subtitle}</small>
+					</a>
+				</li>
+				<!--
+				<li id="panel_domid">
+					<div class="contentless"></div>
+
+					## active or inactive
+					<span class="switch active" title="Enable or disable the panel"></span>
+				</li>
+				-->
+			#end
+		</ol>
+	</div>
+	<div style="display:none;" id="pDebugToolbarHandle">
+		<a title="Show Toolbar" id="pShowToolBarButton" href="#">&laquo;</a>
+	</div>
+	## Output panel content
+	#foreach($panel in $debugtoolbar_panels)
+		#if($panel.HasContent)
+			<div id="${panel.DomId}-content" class="panelContent">
+				<div class="pDebugPanelTitle">
+					<a href="" class="pDebugClose">Close</a>
+					<h3>${panel.Title}</h3>
+				</div>
+				<div class="pDebugPanelContent">
+					<div class="scroll">
+						${panel.Content}
+					</div>
+				</div>
+			</div>
+		#end
+	#end
+	<div id="pDebugWindow" class="panelContent"></div>
+</div>

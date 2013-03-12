@@ -1,0 +1,30 @@
+
+
+#macro(showexception $exc)
+	<b>$exc.GetType().Name</b>
+
+	Message:
+		$exc.Message
+
+		#if($exc.StackTrace)
+			StackTrace:
+				$exc.StackTrace
+		#end
+
+		#if($exc.InnerException)
+		<b>Inner exception:</b>
+			#set($inner = $exc.InnerException)
+				#showexception($inner)
+		#end
+#end
+
+#if (!$exception)
+<p>No exception</p>
+#end
+
+<pre>
+#set($exception = $context.LastException)
+#if($exception)
+	#showexception($exception)
+#end
+</pre>

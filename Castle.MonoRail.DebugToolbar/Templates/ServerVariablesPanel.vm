@@ -1,0 +1,22 @@
+#set($serverVars = $context.UnderlyingContext.Request.ServerVariables)
+<h4>Server Variables</h4>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		#foreach($name in $serverVars)
+		#even
+			<tr class="pDebugEven">
+		#odd
+			<tr class="pDebugOdd">
+		#each
+				<td>${name}</td>
+				<td>${serverVars.get_item($name)}</td>
+			</tr>
+		#end
+	</tbody>
+</table>

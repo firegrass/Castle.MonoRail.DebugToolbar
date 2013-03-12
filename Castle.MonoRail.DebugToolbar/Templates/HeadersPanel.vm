@@ -1,0 +1,43 @@
+<h4>Request Headers</h4>
+<table>
+	<thead>
+		<tr>
+			<th>Key</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		#foreach($header in $Request.Headers)
+		#even
+			<tr class="pDebugEven">
+		#odd
+			<tr class="pDebugOdd">
+		#each
+				<td>${header}</td>
+				<td>${Request.Headers.get_item($header)}</td>
+			</tr>
+		#end
+	</tbody>
+</table>
+
+<h4>Response Headers</h4>
+<table>
+	<thead>
+		<tr>
+			<th>Key</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		#foreach($header in $Context.UnderlyingContext.Response.Headers)
+		#even
+			<tr class="pDebugEven">
+		#odd
+			<tr class="pDebugOdd">
+		#each
+				<td>${header}</td>
+				<td>${context.UnderlyingContext.Response.Headers.get_item($header)}</td>
+			</tr>
+		#end
+	</tbody>
+</table>

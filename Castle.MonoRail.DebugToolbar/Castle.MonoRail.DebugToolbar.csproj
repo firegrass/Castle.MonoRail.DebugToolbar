@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F271DABE-7E8C-4181-9CA5-3E95E8754C87}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Castle.MonoRail.DebugToolbar</RootNamespace>
+    <AssemblyName>Castle.MonoRail.DebugToolbar</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Castle.MonoRail.Framework">
+      <HintPath>..\Libs\MonoRail-2.1RC\net40\Castle.MonoRail.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Libs\MonoRail-2.1RC\net40\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\Libs\MonoRail-2.1RC\net40\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.ActiveRecord">
+      <HintPath>..\Libs\ActiveRecord-3.0RC\net40\Castle.ActiveRecord.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="DebugToolbarTraceListener.cs" />
+    <Compile Include="DebugToolbarLog4netTraceLayout.cs" />
+    <Compile Include="DebugToolbarExtension.cs" />
+    <Compile Include="IPanel.cs" />
+    <Compile Include="DebugToolbarTransformationFilter.cs" />
+    <Compile Include="DebugToolbarFilter.cs" />
+    <Compile Include="AbstractPanel.cs" />
+    <Compile Include="Panels\ExceptionPanel.cs" />
+    <Compile Include="Panels\HeadersPanel.cs" />
+    <Compile Include="Panels\LoggerPanel.cs" />
+    <Compile Include="Panels\NHibernatePanel.cs" />
+    <Compile Include="Panels\PropertyBagPanel.cs" />
+    <Compile Include="Panels\RoutesPanel.cs" />
+    <Compile Include="Panels\ServerVariablesPanel.cs" />
+    <Compile Include="Panels\SessionPanel.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Templates\" />
+    <Folder Include="Panels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Toolbar.resx" />
+    <EmbeddedResource Include="Templates\ExceptionPanel.vm" />
+    <EmbeddedResource Include="Templates\HeadersPanel.vm" />
+    <EmbeddedResource Include="Templates\NHibernatePanel.vm" />
+    <EmbeddedResource Include="Templates\PropertyBagPanel.vm" />
+    <EmbeddedResource Include="Templates\ServerVariablesPanel.vm" />
+    <EmbeddedResource Include="Templates\SessionPanel.vm" />
+    <EmbeddedResource Include="toolbar.vm" />
+  </ItemGroup>
+</Project>

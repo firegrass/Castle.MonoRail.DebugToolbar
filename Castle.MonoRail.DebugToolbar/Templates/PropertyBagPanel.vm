@@ -1,0 +1,66 @@
+#set($PropertyBag = $context.CurrentControllerContext.PropertyBag)
+<h4>Property Bag</h4>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		#foreach($item in $PropertyBag)
+		#even
+			<tr class="pDebugEven">
+		#odd
+			<tr class="pDebugOdd">
+		#each
+				<td>${item.Key}</td>
+				<td>${item.Value}</td>
+			</tr>
+		#end
+	</tbody>
+</table>
+
+<h4>Form</h4>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		#foreach($item in $Request.Form)
+		#even
+			<tr class="pDebugEven">
+		#odd
+			<tr class="pDebugOdd">
+		#each
+				<td>${item}</td>
+				<td>${Request.Form.get_item($item)}</td>
+			</tr>
+		#end
+	</tbody>
+</table>
+
+<h4>Query String</h4>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		#foreach($item in $Request.QueryString)
+		#even
+			<tr class="pDebugEven">
+		#odd
+			<tr class="pDebugOdd">
+		#each
+				<td>${item}</td>
+				<td>${Request.QueryString.get_item($item)}</td>
+			</tr>
+		#end
+	</tbody>
+</table>
